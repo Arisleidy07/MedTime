@@ -1,38 +1,20 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  Pill,
-  Bell,
-  Clock,
-  History,
   ArrowRight,
-  Shield,
-  Heart,
-  Smartphone,
+  Bell,
   Calendar,
-  CheckCircle,
-  Star,
+  History,
+  Shield,
+  Smartphone,
+  Heart,
   Sparkles,
-  Activity,
   TrendingUp,
   Users,
   Award,
 } from "lucide-react";
-import VideoCarousel from "../components/VideoCarousel";
 
 const Home = () => {
-  // Videos que subiste para el carousel
-  const videos = [
-    "/CONTENIDO/1.mp4",
-    "/CONTENIDO/2.mp4",
-    "/CONTENIDO/3.mp4",
-    "/CONTENIDO/4.mp4",
-    "/CONTENIDO/5.mp4",
-    "/CONTENIDO/6.mp4",
-  ];
-
-  const images = ["/CONTENIDO/PAST.jpeg", "/CONTENIDO/MED.jpg"];
-
   const features = [
     {
       icon: (
@@ -129,11 +111,11 @@ const Home = () => {
           loop
           muted
           playsInline
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-30"
         >
           <source src="/CONTENIDO/1.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/70 to-white/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/50 to-white/60"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 md:py-16">
@@ -230,53 +212,26 @@ const Home = () => {
               </motion.div>
             </div>
 
-            {/* Right Side - Video/Image Section */}
+            {/* Right Side - Imagen Grande */}
             <motion.div
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="relative"
+              className="relative flex items-center justify-center"
             >
-              <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-                <VideoCarousel videos={videos} />
-              </div>
-
-              {/* Floating Cards */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl"
-              >
-                <div className="flex items-center space-x-3">
-                  <div className="p-3 bg-green-100 rounded-xl">
-                    <CheckCircle className="h-6 w-6 text-green-600" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900">100% Seguro</div>
-                    <div className="text-sm text-gray-600">
-                      Datos protegidos
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1 }}
-                className="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl"
-              >
-                <div className="flex items-center space-x-3">
-                  <div className="p-3 bg-blue-100 rounded-xl">
-                    <Star className="h-6 w-6 text-yellow-500 fill-yellow-500" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900">5/5 Estrellas</div>
-                    <div className="text-sm text-gray-600">Calificación</div>
-                  </div>
-                </div>
-              </motion.div>
+              <motion.img
+                src="/CONTENIDO/HEART.png"
+                alt="MedTime"
+                className="h-96 w-96 object-contain drop-shadow-2xl"
+                animate={{
+                  y: [0, -20, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
             </motion.div>
           </div>
         </motion.div>
