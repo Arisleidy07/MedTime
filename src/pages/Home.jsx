@@ -2,83 +2,13 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Bell,
-  Calendar,
-  History,
-  Shield,
-  Smartphone,
-  Heart,
   Sparkles,
   TrendingUp,
   Users,
-  Award,
+  CheckCircle,
 } from "lucide-react";
 
 const Home = () => {
-  const features = [
-    {
-      icon: (
-        <img
-          src="/CONTENIDO/HEART.png"
-          alt="Salud"
-          className="h-12 w-12 object-contain"
-        />
-      ),
-      title: "Cuida tu Salud",
-      description: "Diseñado pensando en tu bienestar y tranquilidad",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: (
-        <img
-          src="/CONTENIDO/BOOK.png"
-          alt="Historial"
-          className="h-12 w-12 object-contain"
-        />
-      ),
-      title: "Historial Completo",
-      description: "Registro detallado de todo tu tratamiento médico",
-      color: "from-green-500 to-green-600",
-    },
-    {
-      icon: (
-        <img
-          src="/CONTENIDO/SPI.png"
-          alt="Recordatorios"
-          className="h-12 w-12 object-contain"
-        />
-      ),
-      title: "Recordatorios Inteligentes",
-      description:
-        "Notificaciones precisas para que nunca olvides tomar tus medicamentos",
-      color: "from-yellow-500 to-yellow-600",
-    },
-    {
-      icon: (
-        <img
-          src="/CONTENIDO/HO.png"
-          alt="Horarios"
-          className="h-12 w-12 object-contain"
-        />
-      ),
-      title: "Horarios Flexibles",
-      description: "Configura múltiples horarios adaptados a tu rutina diaria",
-      color: "from-blue-600 to-cyan-600",
-    },
-    {
-      icon: <Shield className="h-10 w-10" />,
-      title: "Datos Seguros",
-      description: "Tu información médica protegida localmente",
-      color: "from-green-600 to-emerald-600",
-    },
-    {
-      icon: <Bell className="h-10 w-10" />,
-      title: "Alertas Precisas",
-      description: "Nunca olvides una dosis con nuestras notificaciones",
-      color: "from-blue-500 to-cyan-500",
-    },
-  ];
-
   const stats = [
     {
       icon: <Users className="h-8 w-8" />,
@@ -233,59 +163,6 @@ const Home = () => {
                 }}
               />
             </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Features Grid - Mejorado */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <motion.h2
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.7 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-            >
-              Características <span className="text-primary">Premium</span>
-            </motion.h2>
-            <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="text-xl text-gray-600"
-            >
-              Todo lo que necesitas para cuidar tu salud
-            </motion.p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity"`}
-                ></div>
-                <div
-                  className={`relative inline-flex p-4 rounded-2xl bg-gradient-to-br ${feature.color} mb-6`}
-                >
-                  <div className="text-white">{feature.icon}</div>
-                </div>
-                <h3 className="relative text-xl font-bold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
-                <p className="relative text-gray-600">{feature.description}</p>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
 
