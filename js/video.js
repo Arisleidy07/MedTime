@@ -3,10 +3,10 @@
 // ========================================
 
 const backgroundVideos = [
-  "/CONTENIDO/1.mp4",
-  "/CONTENIDO/4.mp4",
-  "/CONTENIDO/5.mp4",
-  "/CONTENIDO/6.mp4",
+  "../CONTENIDO/1.mp4",
+  "../CONTENIDO/4.mp4",
+  "../CONTENIDO/5.mp4",
+  "../CONTENIDO/6.mp4",
 ];
 
 let currentVideoIndex = 0;
