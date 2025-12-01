@@ -6,6 +6,7 @@ import {
   TrendingUp,
   Users,
   CheckCircle,
+  Award,
 } from "lucide-react";
 
 const Home = () => {
