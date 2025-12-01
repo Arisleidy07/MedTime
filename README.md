@@ -5,6 +5,8 @@ Una aplicación web moderna y funcional para gestionar recordatorios de medicame
 ## 🌟 Características
 
 - ✅ **Agregar medicamentos** con nombre, dosis, horarios y frecuencia
+- 🎯 **Selectores inteligentes** - Opciones predefinidas para dosis y horarios
+- ✏️ **Personalización completa** - Opción de personalizar cualquier campo
 - 📋 **Dashboard intuitivo** que muestra todos tus medicamentos
 - ✔️ **Marcar como tomado** con un solo clic
 - 📊 **Historial completo** de medicamentos tomados
@@ -12,6 +14,30 @@ Una aplicación web moderna y funcional para gestionar recordatorios de medicame
 - 🎨 **Diseño moderno** con animaciones suaves
 - 📱 **Responsive** - funciona perfectamente en móviles y desktop
 - ♿ **Accesible** - diseño pensado en la experiencia del usuario
+
+### 💊 Opciones de Dosis Predefinidas
+
+- Tabletas (1, 2, 1/2)
+- Miligramos (100mg, 200mg, 400mg, 500mg, 1000mg)
+- Mililitros (5ml, 10ml, 15ml)
+- Medidas caseras (cucharada, cucharadita, gotas)
+- ✏️ Opción personalizada
+
+### ⏰ Horarios Predefinidos
+
+- Horarios simples (8:00 AM, 12:00 PM, 6:00 PM, 10:00 PM)
+- Combinaciones comunes (2, 3, 4 veces al día)
+- Frecuencias (Cada 4/6/8 horas)
+- Momentos del día (En ayunas, con comidas, antes de dormir)
+- ✏️ Opción personalizada
+
+### 📅 Frecuencias Disponibles
+
+- Diaria y cada X horas (4, 6, 8, 12, 24 horas)
+- Días específicos (Lunes, Martes, etc.)
+- Combinaciones (Lunes-Miércoles-Viernes, Martes-Jueves, etc.)
+- Períodos (Día por medio, semanal, quincenal, mensual)
+- Según necesidad
 
 ## 🚀 Tecnologías Utilizadas
 
