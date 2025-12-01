@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Pill, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Header = () => {
@@ -16,9 +16,13 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <Link
             to="/"
-            className="flex items-center space-x-2 hover:opacity-80 transition"
+            className="flex items-center space-x-3 hover:opacity-80 transition"
           >
-            <Pill className="h-8 w-8 text-primary" />
+            <img
+              src="/CONTENIDO/HEART.png"
+              alt="MedTime Logo"
+              className="h-10 w-10 object-contain"
+            />
             <span className="text-2xl font-bold text-primary">MedTime</span>
           </Link>
 

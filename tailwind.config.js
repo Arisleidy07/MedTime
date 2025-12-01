@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0A4D68", // Azul médico profesional
-        secondary: "#088395", // Turquesa médico
-        accent: "#05BFDB", // Cyan elegante
-        dark: "#1E293B", // Gris oscuro profesional
+        primary: "#0284C7", // AZUL brillante
+        secondary: "#10B981", // VERDE esmeralda
+        accent: "#F59E0B", // AMARILLO/NARANJA
+        dark: "#1E293B", // Gris oscuro
         background: "#F8FAFC", // Blanco suave
-        text: "#0F172A", // Negro azulado
-        success: "#059669", // Verde médico
-        warning: "#D97706", // Naranja profesional
-        danger: "#DC2626", // Rojo médico
+        text: "#0F172A", // Negro
+        success: "#10B981", // VERDE
+        warning: "#F59E0B", // AMARILLO
+        danger: "#EF4444", // Rojo
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

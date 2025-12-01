@@ -22,49 +22,72 @@ import VideoCarousel from "../components/VideoCarousel";
 
 const Home = () => {
   // Aquí puedes agregar tus videos
-  const videos = [
-    // '/assets/videos/video1.mp4',
-    // '/assets/videos/video2.mp4',
-    // '/assets/videos/video3.mp4',
-  ];
+  // Imágenes para mostrar
+  const images = ["/CONTENIDO/PAST.jpeg", "/CONTENIDO/MED.jpg"];
+
+  const videos = [];
 
   const features = [
     {
-      icon: <Bell className="h-10 w-10" />,
+      icon: (
+        <img
+          src="/CONTENIDO/HEART.png"
+          alt="Salud"
+          className="h-12 w-12 object-contain"
+        />
+      ),
+      title: "Cuida tu Salud",
+      description: "Diseñado pensando en tu bienestar y tranquilidad",
+      color: "from-blue-500 to-blue-600",
+    },
+    {
+      icon: (
+        <img
+          src="/CONTENIDO/BOOK.png"
+          alt="Historial"
+          className="h-12 w-12 object-contain"
+        />
+      ),
+      title: "Historial Completo",
+      description: "Registro detallado de todo tu tratamiento médico",
+      color: "from-green-500 to-green-600",
+    },
+    {
+      icon: (
+        <img
+          src="/CONTENIDO/SPI.png"
+          alt="Recordatorios"
+          className="h-12 w-12 object-contain"
+        />
+      ),
       title: "Recordatorios Inteligentes",
       description:
         "Notificaciones precisas para que nunca olvides tomar tus medicamentos",
-      color: "from-primary to-secondary",
+      color: "from-yellow-500 to-yellow-600",
     },
     {
-      icon: <Calendar className="h-10 w-10" />,
+      icon: (
+        <img
+          src="/CONTENIDO/HO.png"
+          alt="Horarios"
+          className="h-12 w-12 object-contain"
+        />
+      ),
       title: "Horarios Flexibles",
       description: "Configura múltiples horarios adaptados a tu rutina diaria",
-      color: "from-secondary to-accent",
-    },
-    {
-      icon: <History className="h-10 w-10" />,
-      title: "Historial Completo",
-      description: "Registro detallado de todo tu tratamiento médico",
-      color: "from-slate-600 to-slate-700",
+      color: "from-blue-600 to-cyan-600",
     },
     {
       icon: <Shield className="h-10 w-10" />,
       title: "Datos Seguros",
       description: "Tu información médica protegida localmente",
-      color: "from-success to-emerald-600",
+      color: "from-green-600 to-emerald-600",
     },
     {
-      icon: <Smartphone className="h-10 w-10" />,
-      title: "Acceso Móvil",
-      description: "Disponible en todos tus dispositivos, siempre contigo",
-      color: "from-cyan-600 to-teal-600",
-    },
-    {
-      icon: <Heart className="h-10 w-10" />,
-      title: "Cuida tu Salud",
-      description: "Diseñado pensando en tu bienestar y tranquilidad",
-      color: "from-danger to-red-600",
+      icon: <Bell className="h-10 w-10" />,
+      title: "Alertas Precisas",
+      description: "Nunca olvides una dosis con nuestras notificaciones",
+      color: "from-blue-500 to-cyan-500",
     },
   ];
 
@@ -130,10 +153,7 @@ const Home = () => {
                 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight"
               >
                 Controla tus
-                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                  {" "}
-                  Medicamentos
-                </span>
+                <span className="text-primary"> Medicamentos</span>
                 <br />
                 con <span className="text-primary">MedTime</span>
               </motion.h1>
@@ -159,16 +179,13 @@ const Home = () => {
                   <motion.button
                     whileHover={{
                       scale: 1.05,
-                      boxShadow: "0 20px 40px rgba(10, 77, 104, 0.4)",
+                      boxShadow: "0 20px 40px rgba(2, 132, 199, 0.4)",
                     }}
                     whileTap={{ scale: 0.95 }}
-                    className="group relative px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-bold text-lg shadow-xl overflow-hidden"
+                    className="px-8 py-4 bg-primary text-white rounded-2xl font-bold text-lg shadow-xl hover:bg-blue-600 transition-all flex items-center justify-center space-x-2"
                   >
-                    <span className="relative z-10 flex items-center justify-center space-x-2">
-                      <span>Comenzar Ahora</span>
-                      <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-secondary to-accent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <span>Comenzar Ahora</span>
+                    <ArrowRight className="h-5 w-5" />
                   </motion.button>
                 </Link>
 
@@ -211,30 +228,33 @@ const Home = () => {
                 <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
                   <VideoCarousel videos={videos} />
                 </div>
+              ) : images.length > 0 ? (
+                <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                  <motion.div className="grid grid-cols-2 gap-4 h-full p-4 bg-gradient-to-br from-blue-50 to-green-50">
+                    {images.map((img, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: idx * 0.2 }}
+                        className="relative rounded-2xl overflow-hidden shadow-lg"
+                      >
+                        <img
+                          src={img}
+                          alt={`Contenido ${idx + 1}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
               ) : (
-                <div className="relative h-[500px] bg-gradient-to-br from-primary/15 via-secondary/15 to-slate-200 rounded-3xl shadow-2xl backdrop-blur-sm flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                  <div className="relative text-center p-8">
-                    <motion.div
-                      animate={{
-                        rotate: [0, 10, -10, 0],
-                        scale: [1, 1.1, 1],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                      }}
-                    >
-                      <Pill className="h-32 w-32 text-primary mx-auto mb-6" />
-                    </motion.div>
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                      Coloca tus videos aquí
-                    </h3>
-                    <p className="text-gray-600">
-                      Agrega videos en la carpeta public/assets/videos/
-                    </p>
-                  </div>
+                <div className="relative h-[500px] bg-gradient-to-br from-blue-100 to-green-100 rounded-3xl shadow-2xl flex items-center justify-center">
+                  <img
+                    src="/CONTENIDO/HEART.png"
+                    alt="MedTime"
+                    className="h-64 w-64 object-contain animate-pulse"
+                  />
                 </div>
               )}
 
@@ -338,7 +358,7 @@ const Home = () => {
           transition={{ delay: 1.2 }}
           className="mb-20"
         >
-          <div className="bg-gradient-to-br from-primary via-secondary to-accent rounded-3xl shadow-2xl p-8 md:p-16 text-white relative overflow-hidden">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl shadow-2xl p-8 md:p-16 text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full -ml-32 -mb-32"></div>
 
@@ -421,7 +441,7 @@ const Home = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-12 py-5 bg-gradient-to-r from-primary to-secondary text-white rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all"
+                className="px-12 py-5 bg-white text-primary rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all"
               >
                 Comenzar Gratis Ahora
               </motion.button>
