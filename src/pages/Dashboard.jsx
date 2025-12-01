@@ -29,8 +29,22 @@ const Dashboard = () => {
   const takenMedications = medications.filter((med) => med.status === "taken");
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Video de Fondo */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-15"
+        >
+          <source src="/CONTENIDO/2.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90"></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-8">
         {/* Success Message */}
         <AnimatePresence>
           {showSuccess && (

@@ -21,11 +21,17 @@ import {
 import VideoCarousel from "../components/VideoCarousel";
 
 const Home = () => {
-  // Aquí puedes agregar tus videos
-  // Imágenes para mostrar
-  const images = ["/CONTENIDO/PAST.jpeg", "/CONTENIDO/MED.jpg"];
+  // Videos que subiste para el carousel
+  const videos = [
+    "/CONTENIDO/1.mp4",
+    "/CONTENIDO/2.mp4",
+    "/CONTENIDO/3.mp4",
+    "/CONTENIDO/4.mp4",
+    "/CONTENIDO/5.mp4",
+    "/CONTENIDO/6.mp4",
+  ];
 
-  const videos = [];
+  const images = ["/CONTENIDO/PAST.jpeg", "/CONTENIDO/MED.jpg"];
 
   const features = [
     {
@@ -115,15 +121,22 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100 overflow-hidden">
-      {/* Floating Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-secondary/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-accent/20 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-4000"></div>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Video de Fondo en Bucle */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-20"
+        >
+          <source src="/CONTENIDO/1.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/70 to-white/80"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 py-8 md:py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 md:py-16">
         {/* Hero Section con Video */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -224,39 +237,9 @@ const Home = () => {
               transition={{ delay: 0.4 }}
               className="relative"
             >
-              {videos.length > 0 ? (
-                <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-                  <VideoCarousel videos={videos} />
-                </div>
-              ) : images.length > 0 ? (
-                <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-                  <motion.div className="grid grid-cols-2 gap-4 h-full p-4 bg-gradient-to-br from-blue-50 to-green-50">
-                    {images.map((img, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: idx * 0.2 }}
-                        className="relative rounded-2xl overflow-hidden shadow-lg"
-                      >
-                        <img
-                          src={img}
-                          alt={`Contenido ${idx + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
-              ) : (
-                <div className="relative h-[500px] bg-gradient-to-br from-blue-100 to-green-100 rounded-3xl shadow-2xl flex items-center justify-center">
-                  <img
-                    src="/CONTENIDO/HEART.png"
-                    alt="MedTime"
-                    className="h-64 w-64 object-contain animate-pulse"
-                  />
-                </div>
-              )}
+              <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                <VideoCarousel videos={videos} />
+              </div>
 
               {/* Floating Cards */}
               <motion.div

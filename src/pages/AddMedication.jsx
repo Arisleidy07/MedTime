@@ -18,8 +18,22 @@ const AddMedication = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background py-8">
-      <div className="max-w-2xl mx-auto px-4">
+    <div className="min-h-screen relative overflow-hidden py-8">
+      {/* Video de Fondo */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-15"
+        >
+          <source src="/CONTENIDO/4.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90"></div>
+      </div>
+
+      <div className="relative z-10 max-w-2xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

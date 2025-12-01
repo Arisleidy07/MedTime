@@ -8,8 +8,22 @@ const History = () => {
   const [history] = useLocalStorage("history", []);
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Video de Fondo */}
+      <div className="fixed inset-0 w-full h-full z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-15"
+        >
+          <source src="/CONTENIDO/3.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90"></div>
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,7 +51,7 @@ const History = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-gradient-to-r from-primary to-purple-600 rounded-xl shadow-lg p-6 mb-8 text-white"
+          className="bg-gradient-to-r from-primary to-secondary rounded-xl shadow-lg p-6 mb-8 text-white"
         >
           <div className="flex items-center justify-between">
             <div>
