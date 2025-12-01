@@ -37,7 +37,6 @@ const VideoBackground = ({ videos, opacity = 0.4 }) => {
       >
         <source src={videos[currentVideoIndex]} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/30"></div>
     </div>
   );
 };

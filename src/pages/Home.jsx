@@ -13,8 +13,6 @@ import VideoBackground from "../components/VideoBackground";
 const Home = () => {
   const videos = [
     "/CONTENIDO/1.mp4",
-    "/CONTENIDO/2.mp4",
-    "/CONTENIDO/3.mp4",
     "/CONTENIDO/4.mp4",
     "/CONTENIDO/5.mp4",
     "/CONTENIDO/6.mp4",
@@ -43,248 +41,237 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <VideoBackground videos={videos} opacity={0.5} />
+    <div className="min-h-screen bg-black overflow-x-hidden">
+      {/* Hero Section - Video pantalla completa */}
+      <section
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        style={{ marginTop: 0, paddingTop: 0 }}
+      >
+        {/* Video de fondo */}
+        <div className="absolute inset-0 w-full h-full">
+          <VideoBackground videos={videos} opacity={0.7} />
+        </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 md:py-16">
-        {/* Hero Section con Video */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Text */}
-            <div className="space-y-8">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="inline-flex items-center space-x-2 bg-primary/10 px-4 py-2 rounded-full"
-              >
-                <Sparkles className="h-5 w-5 text-primary" />
-                <span className="text-primary font-semibold">
-                  Tu Salud, Nuestra Prioridad
-                </span>
-              </motion.div>
+        {/* Overlay oscuro */}
+        <div className="absolute inset-0 bg-black/40"></div>
 
-              <motion.h1
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="text-5xl md:text-7xl font-black text-gray-900 leading-tight"
-              >
-                Controla tus
-                <span className="text-primary"> Medicamentos</span>
-                <br />
-                con <span className="text-primary">MedTime</span>
-              </motion.h1>
+        {/* Contenido sobre el video */}
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl md:text-5xl lg:text-7xl font-black text-white leading-tight mb-4"
+          >
+            Controla tus
+            <span className="text-primary"> Medicamentos</span>
+            <br />
+            con <span className="text-primary">MedTime</span>
+          </motion.h1>
 
-              <motion.p
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-xl text-gray-600 leading-relaxed"
-              >
-                La aplicación más completa e intuitiva para gestionar tus
-                medicamentos. Recordatorios inteligentes, historial detallado y
-                control total de tu tratamiento.
-              </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-base md:text-xl text-gray-200 mb-6 max-w-3xl mx-auto px-4"
+          >
+            La aplicación más completa e intuitiva para gestionar tus
+            medicamentos
+          </motion.p>
 
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <Link to="/dashboard">
-                  <motion.button
-                    whileHover={{
-                      scale: 1.05,
-                      boxShadow: "0 20px 40px rgba(2, 132, 199, 0.4)",
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-8 py-4 bg-primary text-white rounded-2xl font-bold text-lg shadow-xl hover:bg-blue-600 transition-all flex items-center justify-center space-x-2"
-                  >
-                    <span>Comenzar Ahora</span>
-                    <ArrowRight className="h-5 w-5" />
-                  </motion.button>
-                </Link>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-white text-primary rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-shadow border-2 border-primary/20"
-                >
-                  Ver Características
-                </motion.button>
-              </motion.div>
-
-              {/* Stats Row */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="grid grid-cols-3 gap-6 pt-8"
-              >
-                {stats.slice(0, 3).map((stat, index) => (
-                  <div key={index} className="text-center">
-                    <div className="text-primary mb-2">{stat.icon}</div>
-                    <div className="text-2xl font-bold text-gray-900">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Right Side - Imagen Grande */}
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="relative flex items-center justify-center"
-            >
-              <motion.img
-                src="/CONTENIDO/HEART.png"
-                alt="MedTime"
-                className="h-96 w-96 object-contain drop-shadow-2xl"
-                animate={{
-                  y: [0, -20, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* How it Works - Premium Design */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="mb-20"
-        >
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl shadow-2xl p-8 md:p-16 text-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full -ml-32 -mb-32"></div>
-
-            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-                ¿Cómo funciona?
-              </h2>
-              <p className="text-center text-white/90 text-xl mb-12">
-                Tres simples pasos para cuidar tu salud
-              </p>
-
-              <div className="grid md:grid-cols-3 gap-8">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20"
-                >
-                  <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
-                    <span className="text-4xl font-black text-primary">1</span>
-                  </div>
-                  <h4 className="font-bold text-2xl mb-3 text-center">
-                    Agrega Medicamentos
-                  </h4>
-                  <p className="text-white/90 text-center">
-                    Selecciona dosis, horarios y frecuencia con opciones
-                    predefinidas
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20"
-                >
-                  <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
-                    <span className="text-4xl font-black text-primary">2</span>
-                  </div>
-                  <h4 className="font-bold text-2xl mb-3 text-center">
-                    Visualiza Dashboard
-                  </h4>
-                  <p className="text-white/90 text-center">
-                    Todos tus medicamentos organizados con estadísticas en
-                    tiempo real
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20"
-                >
-                  <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl">
-                    <span className="text-4xl font-black text-primary">3</span>
-                  </div>
-                  <h4 className="font-bold text-2xl mb-3 text-center">
-                    Marca Tomados
-                  </h4>
-                  <p className="text-white/90 text-center">
-                    Un clic para registrar y crear historial automático
-                  </p>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* CTA Final */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4 }}
-          className="text-center mb-12"
-        >
-          <div className="bg-white rounded-3xl shadow-xl p-12">
-            <Sparkles className="h-16 w-16 text-primary mx-auto mb-6" />
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              ¿Listo para empezar?
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Únete a miles de usuarios que cuidan su salud con MedTime
-            </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
             <Link to="/dashboard">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-12 py-5 bg-white text-primary rounded-2xl font-bold text-xl shadow-xl hover:shadow-2xl transition-all"
+                className="px-8 py-3 md:px-12 md:py-5 bg-primary text-white rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:bg-blue-600 transition-all inline-flex items-center space-x-2"
               >
-                Comenzar Gratis Ahora
+                <span>Comenzar Ahora</span>
+                <ArrowRight className="h-6 w-6" />
               </motion.button>
             </Link>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
-        {/* Footer */}
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.6 }}
-          className="text-center py-8 border-t border-gray-200"
+          transition={{ delay: 1, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-4xl animate-bounce cursor-pointer"
+          onClick={() =>
+            window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
+          }
         >
+          <i className="bi bi-chevron-down"></i>
+        </motion.div>
+      </section>
+
+      {/* Contenido abajo */}
+      <div className="relative z-10 px-4 py-12">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-2xl text-gray-300 leading-relaxed"
+          >
+            La aplicación más completa e intuitiva para gestionar tus
+            medicamentos.
+          </motion.p>
+
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <Link to="/dashboard">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-12 py-5 bg-primary text-white rounded-2xl font-bold text-xl shadow-xl hover:bg-blue-600 transition-all inline-flex items-center space-x-2"
+              >
+                <span>Comenzar Ahora</span>
+                <ArrowRight className="h-6 w-6" />
+              </motion.button>
+            </Link>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="grid grid-cols-3 gap-6 pt-8"
+          >
+            {stats.slice(0, 3).map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-primary mb-2">{stat.icon}</div>
+                <div className="text-2xl font-bold text-white">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Imagen */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8 }}
+            className="pt-8"
+          >
+            <motion.img
+              src="/CONTENIDO/HEART.png"
+              alt="MedTime"
+              className="h-64 w-64 mx-auto object-contain drop-shadow-2xl"
+              animate={{ y: [0, -15, 0] }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          </motion.div>
+        </div>
+      </div>
+
+      {/* How it Works - Premium Design */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2 }}
+        className="mb-20 px-4"
+      >
+        <div className="bg-gray-900 rounded-2xl md:rounded-3xl shadow-2xl p-6 md:p-12 text-white relative overflow-hidden border border-gray-800">
+          <div className="relative z-10">
+            <h2 className="text-2xl md:text-4xl font-bold text-center mb-3">
+              ¿Cómo funciona?
+            </h2>
+            <p className="text-center text-white/90 text-base md:text-lg mb-8">
+              Tres simples pasos para cuidar tu salud
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-4 md:gap-8">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="bg-white/10 backdrop-blur-sm p-4 md:p-8 rounded-xl md:rounded-2xl border border-white/20"
+              >
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-6 shadow-xl">
+                  <span className="text-2xl md:text-3xl font-black text-primary">
+                    1
+                  </span>
+                </div>
+                <h4 className="font-bold text-lg md:text-xl mb-2 text-center">
+                  Agrega Medicamentos
+                </h4>
+                <p className="text-white/90 text-center text-sm md:text-base">
+                  Selecciona dosis, horarios y frecuencia
+                </p>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="bg-white/10 backdrop-blur-sm p-4 md:p-8 rounded-xl md:rounded-2xl border border-white/20"
+              >
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-6 shadow-xl">
+                  <span className="text-2xl md:text-3xl font-black text-primary">
+                    2
+                  </span>
+                </div>
+                <h4 className="font-bold text-lg md:text-xl mb-2 text-center">
+                  Visualiza Dashboard
+                </h4>
+                <p className="text-white/90 text-center text-sm md:text-base">
+                  Medicamentos organizados con estadísticas
+                </p>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="bg-white/10 backdrop-blur-sm p-4 md:p-8 rounded-xl md:rounded-2xl border border-white/20"
+              >
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-6 shadow-xl">
+                  <span className="text-2xl md:text-3xl font-black text-primary">
+                    3
+                  </span>
+                </div>
+                <h4 className="font-bold text-lg md:text-xl mb-2 text-center">
+                  Marca Tomados
+                </h4>
+                <p className="text-white/90 text-center text-sm md:text-base">
+                  Un clic para crear historial automático
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Footer */}
+      <footer className="bg-black border-t border-gray-800 py-8">
+        <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <img
               src="/CONTENIDO/HEART.png"
               alt="MedTime"
               className="h-8 w-8 object-contain"
             />
-            <span className="text-2xl font-bold text-primary">MedTime</span>
+            <span className="text-2xl font-bold text-white">MedTime</span>
           </div>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Cuida tu salud, un medicamento a la vez 💊
           </p>
           <p className="text-sm text-gray-500 mt-2">
             © 2025 MedTime. Todos los derechos reservados.
           </p>
-        </motion.div>
-      </div>
+        </div>
+      </footer>
     </div>
   );
 };

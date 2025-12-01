@@ -10,8 +10,8 @@ const MedicationCard = ({ medication, onMarkAsTaken, onDelete }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9 }}
       whileHover={{ scale: 1.02 }}
-      className={`bg-white rounded-xl shadow-md p-6 border-2 transition-all ${
-        isTaken ? "border-green-400 bg-green-50" : "border-gray-200"
+      className={`bg-gray-900 rounded-xl shadow-md p-6 border-2 transition-all ${
+        isTaken ? "border-green-600 bg-gray-800" : "border-white"
       }`}
     >
       <div className="flex justify-between items-start mb-4">
@@ -28,10 +28,8 @@ const MedicationCard = ({ medication, onMarkAsTaken, onDelete }) => {
             />
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-semibold text-gray-800 mb-1">
-              {medication.name}
-            </h3>
-            <p className="text-gray-600 text-sm mb-2">
+            <h3 className="text-white font-semibold mb-1">{medication.name}</h3>
+            <p className="text-white text-sm mb-2">
               <span className="font-medium">Dosis:</span> {medication.dose}
             </p>
           </div>
@@ -48,22 +46,22 @@ const MedicationCard = ({ medication, onMarkAsTaken, onDelete }) => {
       </div>
 
       <div className="space-y-3">
-        <div className="flex items-center text-gray-700">
+        <div className="flex items-center text-white">
           <Clock className="h-5 w-5 mr-2 text-primary" />
-          <span className="text-sm">
+          <span className="text-sm text-white">
             <span className="font-medium">Horarios:</span> {medication.schedule}
           </span>
         </div>
 
         {medication.frequency && (
-          <div className="text-sm text-gray-600 bg-gray-50 p-2 rounded-lg">
+          <div className="text-sm text-white bg-gray-800 p-2 rounded-lg">
             <span className="font-medium">Frecuencia:</span>{" "}
             {medication.frequency}
           </div>
         )}
 
         {medication.notes && (
-          <div className="text-sm text-gray-600 italic border-l-2 border-primary pl-3">
+          <div className="text-sm text-white italic border-l-2 border-primary pl-3">
             {medication.notes}
           </div>
         )}

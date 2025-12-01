@@ -109,16 +109,16 @@ const MedicationForm = ({ onSave, onCancel, initialData = null }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       onSubmit={handleSubmit}
-      className="bg-white rounded-xl shadow-lg p-6 md:p-8 space-y-6"
+      className="bg-gray-900 rounded-xl shadow-lg p-6 md:p-8 space-y-6"
     >
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">
+      <h2 className="text-2xl font-bold text-white mb-6">
         {initialData ? "Editar Medicamento" : "Nuevo Medicamento"}
       </h2>
 
       <div>
         <label
           htmlFor="name"
-          className="block text-sm font-semibold text-gray-700 mb-2"
+          className="block text-sm font-semibold text-white mb-2"
         >
           Nombre del medicamento *
         </label>
@@ -142,7 +142,7 @@ const MedicationForm = ({ onSave, onCancel, initialData = null }) => {
       <div>
         <label
           htmlFor="dose"
-          className="block text-sm font-semibold text-gray-700 mb-2"
+          className="block text-sm font-semibold text-white mb-2"
         >
           Dosis *
         </label>
@@ -205,7 +205,7 @@ const MedicationForm = ({ onSave, onCancel, initialData = null }) => {
       <div>
         <label
           htmlFor="schedule"
-          className="block text-sm font-semibold text-gray-700 mb-2"
+          className="block text-sm font-semibold text-white mb-2"
         >
           Horarios *
         </label>
@@ -279,7 +279,7 @@ const MedicationForm = ({ onSave, onCancel, initialData = null }) => {
       <div>
         <label
           htmlFor="frequency"
-          className="block text-sm font-semibold text-gray-700 mb-2"
+          className="block text-sm font-semibold text-white mb-2"
         >
           Frecuencia
         </label>
@@ -320,7 +320,7 @@ const MedicationForm = ({ onSave, onCancel, initialData = null }) => {
       <div>
         <label
           htmlFor="notes"
-          className="block text-sm font-semibold text-gray-700 mb-2"
+          className="block text-sm font-semibold text-white mb-2"
         >
           Notas (opcional)
         </label>
@@ -351,7 +351,7 @@ const MedicationForm = ({ onSave, onCancel, initialData = null }) => {
           whileTap={{ scale: 0.98 }}
           type="button"
           onClick={onCancel}
-          className="flex-1 bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition flex items-center justify-center space-x-2"
+          className="flex-1 bg-gray-200 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-300 transition flex items-center justify-center space-x-2"
         >
           <X className="h-5 w-5" />
           <span>Cancelar</span>

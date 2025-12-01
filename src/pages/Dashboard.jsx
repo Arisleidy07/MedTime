@@ -10,8 +10,6 @@ import VideoBackground from "../components/VideoBackground";
 const Dashboard = () => {
   const videos = [
     "/CONTENIDO/1.mp4",
-    "/CONTENIDO/2.mp4",
-    "/CONTENIDO/3.mp4",
     "/CONTENIDO/4.mp4",
     "/CONTENIDO/5.mp4",
     "/CONTENIDO/6.mp4",
@@ -39,8 +37,8 @@ const Dashboard = () => {
   const takenMedications = medications.filter((med) => med.status === "taken");
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <VideoBackground videos={videos} opacity={0.4} />
+    <div className="min-h-screen bg-black">
+      {/* Sin video */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8">
         {/* Success Message */}
@@ -66,10 +64,15 @@ const Dashboard = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            Mi Dashboard
+          <h1 className="text-4xl font-bold text-white mb-2 flex items-center">
+            <img
+              src="/CONTENIDO/SPI.png"
+              alt="Medicamentos"
+              className="h-10 w-10 mr-3"
+            />
+            Mis Medicamentos
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Gestiona tus medicamentos y lleva un control de tu tratamiento
           </p>
         </motion.div>
@@ -99,21 +102,25 @@ const Dashboard = () => {
           </Link>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        {/* Stats Overview */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white p-6 rounded-xl shadow-md"
+            className="bg-gray-900 p-6 rounded-xl shadow-md border border-gray-800"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Total</p>
-                <p className="text-3xl font-bold text-gray-800">
-                  {medications.length}
+                <p className="text-white text-sm mb-1">Total Pendiente</p>
+                <p className="text-3xl font-bold text-white">
+                  {pendingMedications.length}
                 </p>
               </div>
-              <Pill className="h-12 w-12 text-primary" />
+              <img
+                src="/CONTENIDO/HO.png"
+                alt="Pendiente"
+                className="h-12 w-12"
+              />
             </div>
           </motion.div>
 
@@ -121,16 +128,20 @@ const Dashboard = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 }}
-            className="bg-white p-6 rounded-xl shadow-md"
+            className="bg-gray-900 p-6 rounded-xl shadow-md border border-gray-800"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Pendientes</p>
-                <p className="text-3xl font-bold text-orange-600">
-                  {pendingMedications.length}
+                <p className="text-white text-sm mb-1">Tomado Hoy</p>
+                <p className="text-3xl font-bold text-white">
+                  {takenMedications.length}
                 </p>
               </div>
-              <AlertCircle className="h-12 w-12 text-orange-600" />
+              <img
+                src="/CONTENIDO/HEART.png"
+                alt="Tomado"
+                className="h-12 w-12"
+              />
             </div>
           </motion.div>
 
@@ -138,16 +149,20 @@ const Dashboard = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="bg-white p-6 rounded-xl shadow-md"
+            className="bg-gray-900 p-6 rounded-xl shadow-md border border-gray-800"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Tomados Hoy</p>
-                <p className="text-3xl font-bold text-green-600">
-                  {takenMedications.length}
+                <p className="text-white text-sm mb-1">Ver Historial</p>
+                <p className="text-3xl font-bold text-white">
+                  {history.length}
                 </p>
               </div>
-              <History className="h-12 w-12 text-green-600" />
+              <img
+                src="/CONTENIDO/BOOK.png"
+                alt="Historial"
+                className="h-12 w-12"
+              />
             </div>
           </motion.div>
         </div>
@@ -155,22 +170,22 @@ const Dashboard = () => {
         {/* Medications List */}
         {medications.length === 0 ? (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center py-20"
           >
-            <Pill className="h-24 w-24 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-2xl font-semibold text-gray-600 mb-2">
+            <Pill className="h-24 w-24 text-gray-600 mx-auto mb-6" />
+            <h3 className="text-2xl font-semibold text-white mb-3">
               No hay medicamentos registrados
             </h3>
-            <p className="text-gray-500 mb-6">
+            <p className="text-gray-400 mb-6">
               Comienza agregando tu primer medicamento
             </p>
             <Link to="/add-medication">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary text-white py-3 px-8 rounded-lg font-semibold hover:bg-primary/90 transition inline-flex items-center space-x-2"
+                className="bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition flex items-center space-x-2 shadow-lg"
               >
                 <Plus className="h-5 w-5" />
                 <span>Añadir Medicamento</span>
@@ -181,7 +196,7 @@ const Dashboard = () => {
           <div className="space-y-6">
             {pendingMedications.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                <h2 className="text-2xl font-bold text-white mb-4">
                   Pendientes
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -199,7 +214,7 @@ const Dashboard = () => {
 
             {takenMedications.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                <h2 className="text-2xl font-bold text-white mb-4">
                   Tomados Hoy
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

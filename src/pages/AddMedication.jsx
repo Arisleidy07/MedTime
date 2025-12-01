@@ -28,8 +28,8 @@ const AddMedication = () => {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden py-8">
-      <VideoBackground videos={videos} opacity={0.4} />
+    <div className="min-h-screen bg-black py-8">
+      {/* Tema oscuro */}
 
       <div className="relative z-10 max-w-2xl mx-auto px-4">
         <motion.div
@@ -37,10 +37,10 @@ const AddMedication = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-6"
         >
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             Añadir Nuevo Medicamento
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-400">
             Completa la información de tu medicamento
           </p>
         </motion.div>

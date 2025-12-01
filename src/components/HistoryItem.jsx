@@ -9,7 +9,7 @@ const HistoryItem = ({ item, index }) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.05 }}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow"
+      className="bg-gray-900 rounded-lg shadow-sm border border-gray-800 p-4 hover:shadow-md transition-shadow"
     >
       <div className="flex items-start space-x-3">
         <div className="flex-shrink-0">
@@ -19,12 +19,12 @@ const HistoryItem = ({ item, index }) => {
         </div>
 
         <div className="flex-1 min-w-0">
-          <h4 className="text-lg font-semibold text-gray-800 mb-1">
+          <h4 className="text-lg font-semibold text-white mb-1">
             {item.medicationName}
           </h4>
-          <p className="text-sm text-gray-600 mb-2">Dosis: {item.dose}</p>
+          <p className="text-sm text-gray-300 mb-2">Dosis: {item.dose}</p>
 
-          <div className="flex flex-wrap gap-3 text-xs text-gray-500">
+          <div className="flex flex-wrap gap-3 text-xs text-gray-400">
             <div className="flex items-center">
               <Calendar className="h-4 w-4 mr-1" />
               {takenDate.toLocaleDateString("es-ES", {
