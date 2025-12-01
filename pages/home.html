@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedTime - Inicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <div class="header-container">
+        <a href="home.html" class="logo">
+          <img src="/CONTENIDO/HEART.png" alt="MedTime Logo" />
+          <span>MedTime</span>
+        </a>
+        <nav class="nav-desktop">
+          <a href="home.html" class="nav-link active">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <span>Inicio</span>
+          </a>
+          <a href="medications.html" class="nav-link">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            <span>Medicamentos</span>
+          </a>
+          <a href="history.html" class="nav-link">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>Historial</span>
+          </a>
+        </nav>
+        <button class="menu-btn" id="menuBtn">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="navMobile">
+        <a href="home.html" class="nav-link">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span>Inicio</span>
+        </a>
+        <a href="medications.html" class="nav-link">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          <span>Medicamentos</span>
+        </a>
+        <a href="history.html" class="nav-link">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          <span>Historial</span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section id="home">
+        <div class="video-container">
+          <video autoplay muted loop playsinline id="bgVideo">
+            <source src="/CONTENIDO/1.mp4" type="video/mp4" />
+          </video>
+          <div class="video-overlay"></div>
+        </div>
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Controla tus <span class="text-primary">Medicamentos</span><br />
+            con <span class="text-primary">MedTime</span>
+          </h1>
+          <p class="hero-subtitle">
+            La aplicación más completa e intuitiva para gestionar tus
+            medicamentos
+          </p>
+          <a
+            href="medications.html"
+            class="btn btn-lg btn-primary px-4 py-3 fw-bold d-inline-flex align-items-center gap-2"
+            style="border-radius: 12px; text-decoration: none"
+          >
+            <span>Comenzar Ahora</span>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        </div>
+        <div class="stats-section">
+          <div class="stat-card">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+            <div class="stat-value">1000+</div>
+            <div class="stat-label">Usuarios Activos</div>
+          </div>
+          <div class="stat-card">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <div class="stat-value">10K+</div>
+            <div class="stat-label">Medicamentos Tomados</div>
+          </div>
+          <div class="stat-card">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="7" />
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+            </svg>
+            <div class="stat-value">99%</div>
+            <div class="stat-label">Satisfacción</div>
+          </div>
+          <div class="stat-card">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+              <polyline points="17 6 23 6 23 12" />
+            </svg>
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Disponibilidad</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/video.js"></script>
+    <script>
+      // Initialize video rotation for home page
+      document.addEventListener("DOMContentLoaded", () => {
+        setupVideoRotation();
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navMobile = document.getElementById("navMobile");
+
+        if (menuBtn && navMobile) {
+          menuBtn.addEventListener("click", () => {
+            navMobile.classList.toggle("show");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

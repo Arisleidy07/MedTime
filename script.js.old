@@ -1,0 +1,573 @@
+// ========================================
+// GLOBAL STATE & CONSTANTS
+// ========================================
+
+let medications = [];
+let history = [];
+
+const STORAGE_KEYS = {
+  MEDICATIONS: "medtime_medications",
+  HISTORY: "medtime_history",
+};
+
+// Video backgrounds - using the videos in CONTENIDO folder
+const backgroundVideos = [
+  "/CONTENIDO/1.mp4",
+  "/CONTENIDO/4.mp4",
+  "/CONTENIDO/5.mp4",
+  "/CONTENIDO/6.mp4",
+];
+let currentVideoIndex = 0;
+
+// ========================================
+// INITIALIZATION
+// ========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeApp();
+});
+
+function initializeApp() {
+  loadFromLocalStorage();
+  setupEventListeners();
+  setupNavigation();
+  setupVideoRotation();
+  renderMedications();
+  renderHistory();
+  checkEmptyStates();
+}
+
+// ========================================
+// LOCAL STORAGE
+// ========================================
+
+function loadFromLocalStorage() {
+  const storedMedications = localStorage.getItem(STORAGE_KEYS.MEDICATIONS);
+  const storedHistory = localStorage.getItem(STORAGE_KEYS.HISTORY);
+
+  medications = storedMedications ? JSON.parse(storedMedications) : [];
+  history = storedHistory ? JSON.parse(storedHistory) : [];
+}
+
+function saveToLocalStorage() {
+  localStorage.setItem(STORAGE_KEYS.MEDICATIONS, JSON.stringify(medications));
+  localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify(history));
+}
+
+// ========================================
+// NAVIGATION
+// ========================================
+
+function setupNavigation() {
+  // Get all navigation links
+  const navLinks = document.querySelectorAll(".nav-link, [data-page]");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Get target page from href or data-page attribute
+      let targetPage =
+        link.getAttribute("href")?.replace("#", "") ||
+        link.getAttribute("data-page");
+
+      // Close mobile menu if open
+      const navMobile = document.getElementById("navMobile");
+      if (navMobile) {
+        navMobile.classList.remove("show");
+      }
+
+      // Navigate to page
+      navigateToPage(targetPage);
+    });
+  });
+}
+
+function navigateToPage(pageId) {
+  // Hide all pages
+  const pages = document.querySelectorAll(".page");
+  pages.forEach((page) => page.classList.remove("active"));
+
+  // Show target page
+  const targetPage = document.getElementById(pageId);
+  if (targetPage) {
+    targetPage.classList.add("active");
+  }
+
+  // Update active nav link
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (
+      link.getAttribute("href") === `#${pageId}` ||
+      link.getAttribute("data-page") === pageId
+    ) {
+      link.classList.add("active");
+    }
+  });
+
+  // Check empty states when navigating
+  checkEmptyStates();
+}
+
+// ========================================
+// HAMBURGER MENU
+// ========================================
+
+function setupEventListeners() {
+  // Hamburger menu toggle
+  const menuBtn = document.getElementById("menuBtn");
+  const navMobile = document.getElementById("navMobile");
+
+  if (menuBtn && navMobile) {
+    menuBtn.addEventListener("click", () => {
+      navMobile.classList.toggle("show");
+    });
+  }
+
+  // Add medication button
+  const addMedicationBtn = document.getElementById("addMedicationBtn");
+  if (addMedicationBtn) {
+    addMedicationBtn.addEventListener("click", openModal);
+  }
+
+  // Close modal buttons
+  const closeModalBtn = document.getElementById("closeModal");
+  const cancelBtn = document.getElementById("cancelBtn");
+  const modalOverlay = document.getElementById("modalOverlay");
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", closeModal);
+  }
+
+  if (cancelBtn) {
+    cancelBtn.addEventListener("click", closeModal);
+  }
+
+  if (modalOverlay) {
+    modalOverlay.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) {
+        closeModal();
+      }
+    });
+  }
+
+  // Form submission
+  const medicationForm = document.getElementById("medicationForm");
+  if (medicationForm) {
+    medicationForm.addEventListener("submit", handleFormSubmit);
+  }
+
+  // Custom dose/schedule handling
+  const doseSelect = document.getElementById("dose");
+  const customDoseInput = document.getElementById("customDose");
+
+  if (doseSelect && customDoseInput) {
+    doseSelect.addEventListener("change", () => {
+      if (doseSelect.value === "personalizada") {
+        customDoseInput.style.display = "block";
+        customDoseInput.required = true;
+      } else {
+        customDoseInput.style.display = "none";
+        customDoseInput.required = false;
+      }
+    });
+  }
+
+  const scheduleSelect = document.getElementById("schedule");
+  const customScheduleInput = document.getElementById("customSchedule");
+
+  if (scheduleSelect && customScheduleInput) {
+    scheduleSelect.addEventListener("change", () => {
+      if (scheduleSelect.value === "personalizado") {
+        customScheduleInput.style.display = "block";
+        customScheduleInput.required = true;
+      } else {
+        customScheduleInput.style.display = "none";
+        customScheduleInput.required = false;
+      }
+    });
+  }
+}
+
+// ========================================
+// VIDEO ROTATION
+// ========================================
+
+function setupVideoRotation() {
+  const bgVideo = document.getElementById("bgVideo");
+
+  if (!bgVideo) return;
+
+  // Change video every 15 seconds
+  setInterval(() => {
+    currentVideoIndex = (currentVideoIndex + 1) % backgroundVideos.length;
+
+    // Fade out
+    bgVideo.style.opacity = "0";
+
+    setTimeout(() => {
+      bgVideo.src = backgroundVideos[currentVideoIndex];
+      bgVideo.load();
+      bgVideo.play();
+
+      // Fade in
+      bgVideo.style.opacity = "1";
+    }, 500);
+  }, 15000); // Change every 15 seconds
+
+  // Add smooth transition
+  bgVideo.style.transition = "opacity 0.5s ease-in-out";
+}
+
+// ========================================
+// MODAL MANAGEMENT
+// ========================================
+
+function openModal() {
+  const modalOverlay = document.getElementById("modalOverlay");
+  const medicationForm = document.getElementById("medicationForm");
+
+  if (modalOverlay) {
+    modalOverlay.classList.add("show");
+  }
+
+  if (medicationForm) {
+    medicationForm.reset();
+    // Hide custom inputs
+    document.getElementById("customDose").style.display = "none";
+    document.getElementById("customSchedule").style.display = "none";
+  }
+}
+
+function closeModal() {
+  const modalOverlay = document.getElementById("modalOverlay");
+
+  if (modalOverlay) {
+    modalOverlay.classList.remove("show");
+  }
+}
+
+// ========================================
+// FORM HANDLING
+// ========================================
+
+function handleFormSubmit(e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+
+  // Get dose value (custom or selected)
+  let doseValue = formData.get("dose");
+  if (doseValue === "personalizada") {
+    doseValue = formData.get("customDose");
+  }
+
+  // Get schedule value (custom or selected)
+  let scheduleValue = formData.get("schedule");
+  if (scheduleValue === "personalizado") {
+    scheduleValue = formData.get("customSchedule");
+  }
+
+  // Validate required fields
+  if (!formData.get("name") || !doseValue || !scheduleValue) {
+    alert("Por favor completa todos los campos requeridos");
+    return;
+  }
+
+  // Create medication object
+  const medication = {
+    id: Date.now(),
+    name: formData.get("name"),
+    dose: doseValue,
+    schedule: scheduleValue,
+    frequency: formData.get("frequency") || "diaria",
+    notes: formData.get("notes") || "",
+    taken: false,
+    createdAt: new Date().toISOString(),
+  };
+
+  // Add to medications array
+  medications.push(medication);
+
+  // Save to localStorage
+  saveToLocalStorage();
+
+  // Render medications
+  renderMedications();
+
+  // Close modal
+  closeModal();
+
+  // Check empty states
+  checkEmptyStates();
+}
+
+// ========================================
+// RENDER MEDICATIONS
+// ========================================
+
+function renderMedications() {
+  const medicationsList = document.getElementById("medicationsList");
+
+  if (!medicationsList) return;
+
+  // Clear current list
+  medicationsList.innerHTML = "";
+
+  // Filter only active medications (not taken)
+  const activeMedications = medications.filter((med) => !med.taken);
+
+  if (activeMedications.length === 0) {
+    checkEmptyStates();
+    return;
+  }
+
+  // Render each medication
+  activeMedications.forEach((medication) => {
+    const card = createMedicationCard(medication);
+    medicationsList.appendChild(card);
+  });
+}
+
+function createMedicationCard(medication) {
+  const card = document.createElement("div");
+  card.className = "medication-card";
+
+  // Get frequency label
+  const frequencyLabels = {
+    diaria: "Diaria",
+    "cada-4-horas": "Cada 4 horas",
+    "cada-6-horas": "Cada 6 horas",
+    "cada-8-horas": "Cada 8 horas",
+    "cada-12-horas": "Cada 12 horas",
+    "dia-por-medio": "Día por medio",
+    "lunes-a-viernes": "Lunes a Viernes",
+    "fines-de-semana": "Fines de semana",
+    "segun-necesidad": "Según necesidad",
+  };
+
+  const frequencyLabel =
+    frequencyLabels[medication.frequency] || medication.frequency;
+
+  card.innerHTML = `
+    <div class="medication-header">
+      <h3 class="medication-name">${medication.name}</h3>
+      <span class="medication-status pending">Pendiente</span>
+    </div>
+    <div class="medication-info">
+      <div class="medication-info-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        <span>Dosis: ${medication.dose}</span>
+      </div>
+      <div class="medication-info-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>Horario: ${medication.schedule}</span>
+      </div>
+      <div class="medication-info-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <span>Frecuencia: ${frequencyLabel}</span>
+      </div>
+      ${
+        medication.notes
+          ? `
+        <div class="medication-info-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <span>${medication.notes}</span>
+        </div>
+      `
+          : ""
+      }
+    </div>
+    <div class="medication-actions">
+      <button class="btn-take" onclick="markAsTaken(${medication.id})">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Tomado</span>
+      </button>
+      <button class="btn-delete" onclick="deleteMedication(${medication.id})">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        </svg>
+      </button>
+    </div>
+  `;
+
+  return card;
+}
+
+// ========================================
+// MEDICATION ACTIONS
+// ========================================
+
+function markAsTaken(medicationId) {
+  // Find medication
+  const medication = medications.find((med) => med.id === medicationId);
+
+  if (!medication) return;
+
+  // Create history entry
+  const historyEntry = {
+    id: Date.now(),
+    medicationId: medication.id,
+    name: medication.name,
+    dose: medication.dose,
+    schedule: medication.schedule,
+    takenAt: new Date().toLocaleString("es-ES", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    }),
+  };
+
+  // Add to history
+  history.unshift(historyEntry); // Add to beginning of array
+
+  // Mark medication as taken
+  medication.taken = true;
+
+  // Save to localStorage
+  saveToLocalStorage();
+
+  // Re-render
+  renderMedications();
+  renderHistory();
+  checkEmptyStates();
+
+  // Show success message
+  showSuccessMessage();
+}
+
+function deleteMedication(medicationId) {
+  if (!confirm("¿Estás seguro de que quieres eliminar este medicamento?")) {
+    return;
+  }
+
+  // Remove from medications array
+  medications = medications.filter((med) => med.id !== medicationId);
+
+  // Save to localStorage
+  saveToLocalStorage();
+
+  // Re-render
+  renderMedications();
+  checkEmptyStates();
+}
+
+// ========================================
+// RENDER HISTORY
+// ========================================
+
+function renderHistory() {
+  const historyList = document.getElementById("historyList");
+
+  if (!historyList) return;
+
+  // Clear current list
+  historyList.innerHTML = "";
+
+  if (history.length === 0) {
+    checkEmptyStates();
+    return;
+  }
+
+  // Render each history item
+  history.forEach((item) => {
+    const historyItem = createHistoryItem(item);
+    historyList.appendChild(historyItem);
+  });
+}
+
+function createHistoryItem(item) {
+  const div = document.createElement("div");
+  div.className = "history-item";
+
+  div.innerHTML = `
+    <div class="history-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    </div>
+    <div class="history-details">
+      <div class="history-name">${item.name}</div>
+      <div class="history-dose">${item.dose} - ${item.schedule}</div>
+    </div>
+    <div class="history-time">${item.takenAt}</div>
+  `;
+
+  return div;
+}
+
+// ========================================
+// EMPTY STATES
+// ========================================
+
+function checkEmptyStates() {
+  const medicationsList = document.getElementById("medicationsList");
+  const emptyState = document.getElementById("emptyState");
+  const historyList = document.getElementById("historyList");
+  const emptyHistory = document.getElementById("emptyHistory");
+
+  // Check medications empty state
+  const activeMedications = medications.filter((med) => !med.taken);
+
+  if (medicationsList && emptyState) {
+    if (activeMedications.length === 0) {
+      medicationsList.style.display = "none";
+      emptyState.style.display = "block";
+    } else {
+      medicationsList.style.display = "grid";
+      emptyState.style.display = "none";
+    }
+  }
+
+  // Check history empty state
+  if (historyList && emptyHistory) {
+    if (history.length === 0) {
+      historyList.style.display = "none";
+      emptyHistory.style.display = "block";
+    } else {
+      historyList.style.display = "flex";
+      emptyHistory.style.display = "none";
+    }
+  }
+}
+
+// ========================================
+// SUCCESS MESSAGE
+// ========================================
+
+function showSuccessMessage() {
+  const successMsg = document.getElementById("successMsg");
+
+  if (!successMsg) return;
+
+  successMsg.classList.add("show");
+
+  setTimeout(() => {
+    successMsg.classList.remove("show");
+  }, 3000);
+}

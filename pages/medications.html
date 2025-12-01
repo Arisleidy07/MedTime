@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MedTime - Medicamentos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header">
+      <div class="header-container">
+        <a href="home.html" class="logo">
+          <img src="/CONTENIDO/HEART.png" alt="MedTime Logo" />
+          <span>MedTime</span>
+        </a>
+        <nav class="nav-desktop">
+          <a href="home.html" class="nav-link">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+            <span>Inicio</span>
+          </a>
+          <a href="medications.html" class="nav-link active">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            <span>Medicamentos</span>
+          </a>
+          <a href="history.html" class="nav-link">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>Historial</span>
+          </a>
+        </nav>
+        <button class="menu-btn" id="menuBtn">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="navMobile">
+        <a href="home.html" class="nav-link">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span>Inicio</span>
+        </a>
+        <a href="medications.html" class="nav-link">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          <span>Medicamentos</span>
+        </a>
+        <a href="history.html" class="nav-link">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          <span>Historial</span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section id="dashboard">
+        <div class="dashboard-header">
+          <h1>Mis Medicamentos</h1>
+          <button
+            class="btn btn-primary d-flex align-items-center gap-2"
+            id="addMedicationBtn"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            <span>Añadir Medicamento</span>
+          </button>
+        </div>
+        <div id="medicationsList" class="medications-grid"></div>
+        <div id="emptyState" class="empty-state">
+          <svg
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <h3>No hay medicamentos</h3>
+          <p>Añade tu primer medicamento para empezar</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal Form -->
+    <div id="modalOverlay" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Añadir Nuevo Medicamento</h2>
+          <button class="close-btn" id="closeModal">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <form id="medicationForm">
+          <div class="form-group">
+            <label for="name">Nombre del medicamento *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Ej: Ibuprofeno"
+              required
+            />
+            <span class="error-msg" id="nameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="dose">Dosis *</label>
+            <select id="dose" name="dose" required>
+              <option value="">Selecciona una dosis</option>
+              <option value="1 tableta">1 tableta</option>
+              <option value="2 tabletas">2 tabletas</option>
+              <option value="1/2 tableta">1/2 tableta</option>
+              <option value="100mg">100mg</option>
+              <option value="200mg">200mg</option>
+              <option value="400mg">400mg</option>
+              <option value="500mg">500mg</option>
+              <option value="1000mg">1000mg (1g)</option>
+              <option value="5ml">5ml</option>
+              <option value="10ml">10ml</option>
+              <option value="15ml">15ml</option>
+              <option value="1 cucharada">1 cucharada</option>
+              <option value="1 cucharadita">1 cucharadita</option>
+              <option value="1 gota">1 gota</option>
+              <option value="2 gotas">2 gotas</option>
+              <option value="personalizada">✏️ Personalizada</option>
+            </select>
+            <input
+              type="text"
+              id="customDose"
+              name="customDose"
+              placeholder="Especifica tu dosis"
+              style="display: none; margin-top: 8px"
+            />
+            <span class="error-msg" id="doseError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="schedule">Horarios *</label>
+            <select id="schedule" name="schedule" required>
+              <option value="">Selecciona un horario</option>
+              <option value="8:00 AM">8:00 AM</option>
+              <option value="12:00 PM">12:00 PM</option>
+              <option value="6:00 PM">6:00 PM</option>
+              <option value="10:00 PM">10:00 PM</option>
+              <option value="8:00 AM, 8:00 PM">8:00 AM, 8:00 PM</option>
+              <option value="8:00 AM, 2:00 PM, 8:00 PM">
+                8:00 AM, 2:00 PM, 8:00 PM
+              </option>
+              <option value="8:00 AM, 12:00 PM, 6:00 PM, 10:00 PM">
+                8:00 AM, 12:00 PM, 6:00 PM, 10:00 PM
+              </option>
+              <option value="Cada 4 horas">Cada 4 horas</option>
+              <option value="Cada 6 horas">Cada 6 horas</option>
+              <option value="Cada 8 horas">Cada 8 horas</option>
+              <option value="En ayunas (antes del desayuno)">
+                En ayunas (antes del desayuno)
+              </option>
+              <option value="Con el desayuno">Con el desayuno</option>
+              <option value="Después del almuerzo">Después del almuerzo</option>
+              <option value="Antes de dormir">Antes de dormir</option>
+              <option value="personalizado">✏️ Personalizado</option>
+            </select>
+            <input
+              type="text"
+              id="customSchedule"
+              name="customSchedule"
+              placeholder="Ej: 8:30 AM, 1:45 PM"
+              style="display: none; margin-top: 8px"
+            />
+            <span class="error-msg" id="scheduleError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="frequency">Frecuencia</label>
+            <select id="frequency" name="frequency">
+              <option value="diaria">📅 Diaria (Todos los días)</option>
+              <option value="cada-4-horas">⏰ Cada 4 horas</option>
+              <option value="cada-6-horas">⏰ Cada 6 horas</option>
+              <option value="cada-8-horas">⏰ Cada 8 horas</option>
+              <option value="cada-12-horas">⏰ Cada 12 horas</option>
+              <option value="dia-por-medio">📆 Día por medio</option>
+              <option value="lunes-a-viernes">🗓️ Lunes a Viernes</option>
+              <option value="fines-de-semana">🗓️ Fines de semana</option>
+              <option value="segun-necesidad">💊 Según necesidad</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Notas (opcional)</label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="3"
+              placeholder="Tomar con alimentos, después de comer, etc."
+            ></textarea>
+          </div>
+
+          <div class="form-actions d-flex gap-2">
+            <button
+              type="submit"
+              class="btn btn-primary flex-fill d-flex align-items-center justify-content-center gap-2"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+                />
+                <polyline points="17 21 17 13 7 13 7 21" />
+                <polyline points="7 3 7 8 15 8" />
+              </svg>
+              <span>Guardar</span>
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary flex-fill d-flex align-items-center justify-content-center gap-2"
+              id="cancelBtn"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              <span>Cancelar</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMsg" class="success-msg">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
+      </svg>
+      <span>¡Medicamento marcado como tomado!</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/medications.js"></script>
+    <script src="../js/form.js"></script>
+    <script src="../js/ui.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        loadFromLocalStorage();
+        setupFormHandlers();
+        renderMedications();
+        checkEmptyStates();
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navMobile = document.getElementById("navMobile");
+
+        if (menuBtn && navMobile) {
+          menuBtn.addEventListener("click", () => {
+            navMobile.classList.toggle("show");
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
