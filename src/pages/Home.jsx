@@ -8,8 +8,17 @@ import {
   CheckCircle,
   Award,
 } from "lucide-react";
+import VideoBackground from "../components/VideoBackground";
 
 const Home = () => {
+  const videos = [
+    "/CONTENIDO/1.mp4",
+    "/CONTENIDO/2.mp4",
+    "/CONTENIDO/3.mp4",
+    "/CONTENIDO/4.mp4",
+    "/CONTENIDO/5.mp4",
+    "/CONTENIDO/6.mp4",
+  ];
   const stats = [
     {
       icon: <Users className="h-8 w-8" />,
@@ -35,19 +44,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Video de Fondo en Bucle */}
-      <div className="fixed inset-0 w-full h-full z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-30"
-        >
-          <source src="/CONTENIDO/1.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/50 to-white/60"></div>
-      </div>
+      <VideoBackground videos={videos} opacity={0.5} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8 md:py-16">
         {/* Hero Section con Video */}

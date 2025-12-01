@@ -3,8 +3,18 @@ import { motion } from "framer-motion";
 import MedicationForm from "../components/MedicationForm";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { addMedication } from "../utils/medicationHelpers";
+import VideoBackground from "../components/VideoBackground";
 
 const AddMedication = () => {
+  const videos = [
+    "/CONTENIDO/1.mp4",
+    "/CONTENIDO/2.mp4",
+    "/CONTENIDO/3.mp4",
+    "/CONTENIDO/4.mp4",
+    "/CONTENIDO/5.mp4",
+    "/CONTENIDO/6.mp4",
+  ];
+
   const navigate = useNavigate();
   const [medications, setMedications] = useLocalStorage("medications", []);
 
@@ -19,19 +29,7 @@ const AddMedication = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden py-8">
-      {/* Video de Fondo */}
-      <div className="fixed inset-0 w-full h-full z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-15"
-        >
-          <source src="/CONTENIDO/4.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/85 to-white/90"></div>
-      </div>
+      <VideoBackground videos={videos} opacity={0.4} />
 
       <div className="relative z-10 max-w-2xl mx-auto px-4">
         <motion.div
