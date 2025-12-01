@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
@@ -7,17 +7,15 @@ import History from "./pages/History";
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/add-medication" element={<AddMedication />} />
-          <Route path="/history" element={<History />} />
-        </Routes>
-      </div>
-    </Router>
+    <div className="min-h-screen">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/add-medication" element={<AddMedication />} />
+        <Route path="/history" element={<History />} />
+      </Routes>
+    </div>
   );
 }
 
