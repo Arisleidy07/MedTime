@@ -273,7 +273,11 @@ const Home = () => {
           className="text-center py-8 border-t border-gray-200"
         >
           <div className="flex items-center justify-center space-x-2 mb-4">
-            <Pill className="h-6 w-6 text-primary" />
+            <img
+              src="/CONTENIDO/HEART.png"
+              alt="MedTime"
+              className="h-8 w-8 object-contain"
+            />
             <span className="text-2xl font-bold text-primary">MedTime</span>
           </div>
           <p className="text-gray-600">
